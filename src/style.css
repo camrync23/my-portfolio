@@ -10,28 +10,6 @@ html {
 }
 
 
-nav {
-  display: flex;
-  margin-bottom: 20px;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--border-color);
-}
-
-nav a {
-  flex: 1;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-  padding: 0.5em;
-  margin-bottom: 5px;
-}
-
-nav a:hover {
-  border-bottom: 0.4em solid var(--color-accent);
-  color: var(--color-accent);
-}
-
 .color-scheme {
   position: absolute; /* Fixed positioning */
   top: 5px;      /* Adjusts the distance from the top */
@@ -42,4 +20,14 @@ nav a:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow */
 }
 
+h3 {
+  font-size: 1.5rem;  /* Adjust the font size as needed */
+  margin: 0.5rem 0;   /* Add some margin for spacing */
+  color: #333;        /* Set the text color */
+}
 
+
+.current {
+  font_weight: bold;
+  text_decoration: underline;
+}
