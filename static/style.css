@@ -1,0 +1,45 @@
+html {
+  color-scheme: light dark;
+}
+
+:root {
+  --color-accent: oklch(65% 50% 0);
+  --color-accent-light: oklch(95% 5% 0);
+  --color-border: oklch(80% 3% 200);
+  --border-color: oklch (50% 10% 200 / 40%);
+}
+
+
+nav {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-color);
+}
+
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+  margin-bottom: 5px;
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+.color-scheme {
+  position: absolute; /* Fixed positioning */
+  top: 5px;      /* Adjusts the distance from the top */
+  right: 5px;    /* Adjusts the distance from the right */
+  font-size: 0.8em; /* Adjusts the font size */
+  padding: 5px;      /* Optional: adds some padding */
+  border-radius: 5px; /* Optional: rounds the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow */
+}
+
+
