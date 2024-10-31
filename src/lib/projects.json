@@ -1,62 +1,76 @@
 [
 	{
-		"title": "Lorem ipsum dolor sit.",
+		"title": "DSC 209 Data Visualization Project 1",
+		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit."
+		"description": "In this project, an expository data visualization exploring the climate in major U.S. Cities was created. The project focuses on sound visualization techniques and choices"
 	},
 	{
-		"title": "Architecto minima sed omnis?",
+		"title": "DSC 209 Data Visualization Project 2",
+		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Est, reiciendis aspernatur debitis maxime et itaque animi sit quod quo, tempore incidunt tempora dignissimos exercitationem enim numquam quam quaerat optio laborum ut unde hic delectus laboriosam? Quasi, cupiditate corporis."
+		"description": "In this project, an earnest and deceptive data visualization was created using leading cause of death data provuded by the department of health and human services in hopes of exploring what makes visualizations deceptive and honest"
 	},
 	{
-		"title": "Asperiores rem repellendus doloremque.",
+		"title": "DSC 209 Data Visualization Project 3",
+		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Eligendi tenetur quae quos recusandae est. Cumque, voluptatem. Quo nihil dignissimos molestiae explicabo praesentium aspernatur debitis, illo rerum possimus quam ducimus earum nulla officiis maiores itaque repellat corporis soluta labore?"
+		"description": "In this project, an interactive data visualization was created using leading cause of death data provided by the department of health and human services in hopes of exploring what makes visualizations interactive and engaging"
 	},
 	{
-		"title": "Laudantium reprehenderit placeat perspiciatis.",
+		"title": "DSC 232 Group Project Exploring Demographic and Socioeconomic Influences on Education Attainment",
+		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Quo minus perferendis nulla corrupti repellat dolorem dolore assumenda sit minima ducimus quidem ullam, id ipsa dicta tempora laborum officiis unde possimus cumque nobis alias inventore! Ullam repudiandae iusto nam."
+		"description": "In this project we explored the relationship between socioeconomic and demographic factors and education attainment in the US, specifically the relationship between gender, race, and income and education attainment"
 	},
 	{
-		"title": "Consequuntur autem eos facere.",
+		"title": "DSC 267 Ethical Data Plan for Precision Medicine for Psychiatric Medication Advancement",
+		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Laborum alias ea unde harum aspernatur? Molestiae, veritatis, possimus, numquam ex excepturi quod ducimus sit odit optio quibusdam sequi aliquid itaque tempore perspiciatis placeat expedita vero voluptates. Sit, aspernatur sint!"
+		"description": "In this project the plans for a traditional data science pipeline were outlined and designed with ethical implications in mind for the use of precision medicine in prescribing and creating psychiatric medications."
 	},
 	{
-		"title": "Quos sint quaerat omnis?",
+		"title": "DSC 267 Ethical Data Plan for Flood Risk and Prevention",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Est neque, velit nam rerum error odio voluptates voluptatem magnam laboriosam ad? Doloribus, id et itaque unde porro totam ullam quaerat blanditiis odit animi eveniet aut, voluptate velit iure odio."
+		"year": "2024",
+		"description": "In this project, we wrote an ethical data plan for flood risk and prevention in Kerala, which was designed with the goal of implementing flood prevention and risk management strategies in the state. "
 	},
 	{
-		"title": "Iste ipsam magni fuga!",
+		"title": "DSC 258 Review of Techniques for Mitigating Gender Bias in NLP",
+		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Velit omnis suscipit nemo quia? Iste maiores numquam labore quia nemo eveniet odit, modi magnam? Architecto officia sint est. Architecto iste minima consequuntur explicabo illo error sed at dolore nostrum!"
+		"description": "This project investigates advanced methods for mitigating gender bias in natural language processing (NLP) by analyzing the influence of verb choice on perceptions of agency and power, and introduces innovative techniques for rewriting sentences to enhance fairness in representation. "
+	},
+
+	{
+		"title": "DSC 207 Python Final Project" ,
+		"year": "2023",
+		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"description": "In this data project, I conducted a comprehensive analysis of video game sales and review scores by exploring sentiment relationships, regional trends, and the effectiveness of various predictive models, ultimately uncovering insights into the influences of game features on global sales and reviews."
 	},
 	{
-		"title": "Ipsum, aperiam magni? Nobis.",
+		"title": "BellaBeat Data Analysis: A Google Capstone Project",
+		"year": "2023",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Delectus magni, vel, quod mollitia hic rem temporibus, sint doloribus tenetur qui dolores tempore quisquam fuga nobis recusandae molestiae ipsum nostrum maxime eaque dicta aperiam eum quas beatae. At, neque."
+		"description": "The Bella Beat capstone project involved analyzing health and wellness data to identify patterns and insights related to women's fitness and lifestyle, ultimately providing actionable recommendations for enhancing product offerings and user engagement."
 	},
 	{
-		"title": "Dicta nihil odit illo?",
+		"title": "Kenny's Strawberry Farm Climate and Business Analysis",
+		"year": "2023",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Vitae quos laudantium officiis rerum, accusamus delectus aspernatur quas nulla, magni sed, excepturi saepe incidunt laboriosam alias at aliquam atque quisquam autem nesciunt. Minus, reprehenderit odit nam illo natus aspernatur?"
+		"description": "The project involved analyzing sales, inventory, reservation, and weather data to assess the impact of weather on a u-pick strawberry business, ultimately developing predictions to optimize staffing and inventory needs based on reservations and forecasted weather conditions."
 	},
 	{
-		"title": "Vel earum nulla facilis.",
+		"title": "The Anatomy of a Strawberry",
+		"year": "2023",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Aut voluptatem sint atque corrupti accusamus necessitatibus possimus et, itaque nulla id deleniti nemo repellendus asperiores molestias laudantium, mollitia ad dicta. Laboriosam, itaque. Quos corporis, perferendis natus officiis beatae qui."
+		"description": "The project explores the anatomy of a strawberry plant through engaging and age-appropriate content designed to educate elementary and middle school students about its structure and growth processes."
 	},
 	{
-		"title": "Nobis iste neque quaerat.",
+		"title": " 'What Do You Want To Be When You Grow Up?' An Analysis of Higher Education and Modern Society",
+		"year": "2021",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Quos, recusandae, sit rerum velit nostrum nihil quisquam tempora repellat sed quibusdam facilis. Assumenda quaerat ab, nesciunt odio facere sit, ipsa necessitatibus tempora, maiores commodi sed quae provident deserunt at?"
-	},
-	{
-		"title": "Iusto, incidunt. Totam, illum.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Tempore, eveniet minus velit, earum aperiam necessitatibus repellendus provident accusamus illum officiis doloribus, eum saepe est aut numquam distinctio pariatur natus totam repellat. Numquam nulla libero sapiente magnam nostrum ex."
+		"description": "In this essay, I reflect on the challenges of making higher education unattainable and the resulting debt burden, exploring how society's emphasis on college degrees as a prerequisite for success devalues personal worth and perpetuates a capitalist agenda, all framed through my own experiences with these pressures."
 	}
+
 ]

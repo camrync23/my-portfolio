@@ -30,7 +30,7 @@ for (let p of pages) {
   }
   nav.append(a);
 }
-
+/*
 document.body.insertAdjacentHTML(
     'afterbegin',
     `
@@ -63,6 +63,8 @@ select.addEventListener('input', function (event) {
 
   localStorage.colorScheme = event.target.value;
 });
+
+*/
 
 const form = document.getElementById('contact-form');
 

@@ -10,16 +10,6 @@ html {
 }
 
 
-.color-scheme {
-  position: absolute; /* Fixed positioning */
-  top: 5px;      /* Adjusts the distance from the top */
-  right: 5px;    /* Adjusts the distance from the right */
-  font-size: 0.8em; /* Adjusts the font size */
-  padding: 5px;      /* Optional: adds some padding */
-  border-radius: 5px; /* Optional: rounds the corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow */
-}
-
 h3 {
   font-size: 1.5rem;  /* Adjust the font size as needed */
   margin: 0.5rem 0;   /* Add some margin for spacing */
