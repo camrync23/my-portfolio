@@ -16,6 +16,7 @@
        {/each}
     </div>
 
+
 <style>
     .projects {
     display: grid;
@@ -35,6 +36,12 @@
 .project-tile:hover {
     transform: scale(1.05);
 }
+
+.project-tile img {
+        max-width: 100%; /* Responsive */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 5px; /* Optional: round corners */
+    }
 
 @media (max-width: 900px) {
     .projects {
