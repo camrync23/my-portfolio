@@ -7,10 +7,11 @@
     <svelte:element this={'h' + hLevel}>{data.title}</svelte:element>
     <img src={data.image} alt={data.title} />
     <p>{data.description}</p>
+    <div class="project-year">{data.year}</div>
 </article>
 
-<style>
 
+<style>
     body {
         margin-inline: auto;
         padding: 25px;
@@ -32,6 +33,14 @@
         border-radius: 8px;
         padding: 1em;
         transition: box-shadow 0.2s ease-in-out;
+    }
+
+    .project-year {
+        font-size: 0.8em;
+        color: whitesmoke;
+        margin-bottom: 10px;
+        font-family:Baskervville;
+        font-variant-numeric: oldstyle-nums;
     }
     
     @media (prefers-color-scheme: dark) {
