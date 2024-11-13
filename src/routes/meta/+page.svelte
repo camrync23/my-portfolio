@@ -1,6 +1,7 @@
 <script>
   import * as d3 from 'd3';
   import { onMount } from 'svelte';
+  import Pie from '$lib/Pie.svelte';
 
   let data = [];
   let commits = [];
@@ -13,8 +14,11 @@
   let selectedPoints = new Set();
   let selectedCommits = [];  // Declare an empty array to store selected commits
   let svg;
+  let selectedLines = [];  // New reactive variable to track selected lines
+  let languageBreakdown = [];  // Language breakdown based on selected lines
+  let totalLinesEdited = 0; 
 
-  let width = 1000, height = 600;
+  let width = 800, height = 300;
   let margin = { top: 10, right: 10, bottom: 30, left: 40 };
 
   let usableArea = {
@@ -117,30 +121,66 @@
       d3.select(svg).selectAll('.dots, .overlay ~ *').raise();
     }
   }
+  
+  $: selectedLines = (selectedCommits.length > 0 ? selectedCommits : commits).flatMap(commit =>
+  commit[1].map(d => ({
+    language: getLanguage(d.file), // Get language based on file extension
+    lines: d.line
+  }))
+);
+
+// Helper function to get the language type based on the file extension
+function getLanguage(file) {
+  if (file.endsWith('.js')) return 'JavaScript';
+  if (file.endsWith('.html')) return 'HTML';
+  if (file.endsWith('.css')) return 'CSS';
+  if (file.endsWith('.svelte')) return 'Svelte';
+  return 'Other';  // Default case for unknown file types
+}
+
+$: languageBreakdown = d3.rollups(
+  selectedLines,
+  (v) => d3.sum(v, (d) => d.lines),  // Sum the lines for each language
+  (d) => d.language  // Group by language
+);
+
+// Total number of lines edited (for proportion calculation)
+$: totalLinesEdited = d3.sum(languageBreakdown, (d) => d[1]);
+
+// Format the proportion as a percentage with one decimal place
+$: formattedLanguageBreakdown = languageBreakdown.map(([language, lines]) => ({
+  language,
+  lines,
+  proportion: totalLinesEdited > 0 ? (lines / totalLinesEdited) : 0,  // Proportion of total lines edited
+  formattedProportion: d3.format(".1~%")(totalLinesEdited > 0 ? (lines / totalLinesEdited) : 0)  // Format as percentage
+}));
+  
 
   // Brush function: Update selectedPoints and selectedCommits
-  function brushed(event) {
-    const selection = event.selection;
-    if (!selection) return;
+  // Brush function: Update selectedPoints and selectedCommits
+function brushed(event) {
+  const selection = event.selection;
+  if (!selection) return;
 
-    const [x0, y0] = selection[0];
-    const [x1, y1] = selection[1];
+  const [x0, y0] = selection[0];
+  const [x1, y1] = selection[1];
 
-    selectedPoints.clear();
-    selectedCommits = [];  // Reset the selected commits
+  selectedPoints.clear();
+  selectedCommits = [];  // Reset the selected commits
 
-    commits.forEach((commit, index) => {
-      const cx = xScale(commit[1][0].datetime);
-      const cy = yScale(commit[1][0].hourFrac);
+  // Check which commits are within the selection bounds and update selectedCommits
+  commits.forEach((commit, index) => {
+    const cx = xScale(commit[1][0].datetime);
+    const cy = yScale(commit[1][0].hourFrac);
 
-      if (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1) {
-        selectedPoints.add(index);
-        selectedCommits.push(commit[1][0]); // Add the commit to the selectedCommits array
-      }
-    });
+    if (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1) {
+      selectedPoints.add(index);
+      selectedCommits.push(commit);  // Add the commit to the selectedCommits array
+    }
+  });
 
-    updateDots();
-  }
+  updateDots();
+}
 
   function updateDots() {
     d3.select(svg)
@@ -148,6 +188,8 @@
       .data(commits)
       .attr('fill', (d, index) => selectedPoints.has(index) ? 'orange' : 'steelblue');
   }
+
+  $: pieChartData = Array.from(languageBreakdown).map(([language, lines]) => ({ label: language, value: lines }));
 </script>
 
 <main>
@@ -219,6 +261,19 @@
   <!-- Count of selected commits -->
   <p>{selectedCommits.length > 0 ? `${selectedCommits.length} commits selected` : "No commits selected"}</p>
 
+  <!-- Language Breakdown Section -->
+<div class="profile-box">
+  <h1>Language Breakdown of Edited Lines</h1>
+  <Pie data={pieChartData} />
+    {#each formattedLanguageBreakdown as { language, lines, formattedProportion }}
+      <div class="language-stat">
+        <span class="language">{language}</span>
+        <span class="lines">{lines} lines</span>
+        <span class="proportion">({formattedProportion})</span>
+      </div>
+    {/each}
+</div>
+  
   <!-- Tooltip Section -->
   {#if hoveredIndex !== -1}
     <dl class="info tooltip">
@@ -362,16 +417,15 @@
     stroke-dasharray: 5 3;
     animation: marching-ants 2s linear infinite;
   }
-
-  .language-stats {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-
   .language-stat {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.language-stat span {
+  font-weight: normal;
+  color: var(--text-color);
+}
 </style>
