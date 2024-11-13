@@ -27,6 +27,12 @@
   let xScale, yScale;
   let xAxis, yAxis, xAxisGridlines, yAxisGridlines;
 
+  // New variable to store the brushed selection
+  let brushSelection = null;
+  
+  // Reference to the SVG element
+  let svg;
+
   onMount(async () => {
     try {
       // Load and process the CSV data
@@ -119,6 +125,29 @@
       d3.select(xAxisGridlines)
         .call(d3.axisBottom(xScale).tickFormat('').tickSize(-usableArea.height));
     }
+    
+    // After brush is created, raise the dots and everything after the overlay
+    if (svg) {
+      d3.select(svg).call(d3.brush());
+
+      // Raise the dots and everything that comes after the overlay
+      d3.select(svg).selectAll('.dots, .overlay ~ *').raise();
+    }
+  }
+
+  // Create brush and call it on the SVG element
+  function brushed(event) {
+    if (!event.selection) return;
+
+    // Get the brushed area in terms of x and y scales
+    const [[x0, y0], [x1, y1]] = event.selection;
+    
+    // Update the brushSelection with the current selection range
+    brushSelection = { x0, y0, x1, y1 };
+
+    // Optionally, you can do something with the selection, like filter the data or highlight selected points
+    // For now, we just log the brushed area
+    console.log('Brushed area:', brushSelection);
   }
 </script>
 
@@ -163,7 +192,7 @@
 
   <!-- Scatterplot Section -->
   <h2>Commits by Time of Day</h2>
-  <svg viewBox="0 0 {width} {height}">
+  <svg bind:this={svg} viewBox="0 0 {width} {height}">
     <!-- Y Axis Gridlines -->
     <g transform="translate({usableArea.left}, 0)" bind:this={yAxisGridlines} />
     
@@ -312,4 +341,19 @@
     opacity: 0;
     visibility: hidden;
   }
+
+  @keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+svg :global(.selection) {
+  fill-opacity: 10%;
+  stroke:white;
+  stroke-opacity: 70%;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
 </style>
+
