@@ -5,16 +5,18 @@
   let data = [];
   let commits = [];
   let stats = {};
-  let hoveredIndex = -1; // Track which commit is hovered
-  let hoveredCommit = {}; // Store data for the hovered commit
+  let hoveredIndex = -1;
+  let hoveredCommit = {};
   let mouseX = 0;
   let mouseY = 0;
+  let brushSelection = null;
+  let selectedPoints = new Set();
+  let selectedCommits = [];  // Declare an empty array to store selected commits
+  let svg;
 
-  // Set up the dimensions of the chart
   let width = 1000, height = 600;
   let margin = { top: 10, right: 10, bottom: 30, left: 40 };
 
-  // Usable area after accounting for margins
   let usableArea = {
     top: margin.top,
     right: width - margin.right,
@@ -27,25 +29,17 @@
   let xScale, yScale;
   let xAxis, yAxis, xAxisGridlines, yAxisGridlines;
 
-  // New variable to store the brushed selection
-  let brushSelection = null;
-  
-  // Reference to the SVG element
-  let svg;
-
+  // Load the data when the component is mounted
   onMount(async () => {
     try {
-      // Load and process the CSV data
       data = await d3.csv('loc.csv', (row) => ({
         ...row,
         datetime: new Date(row.datetime),
         hourFrac: new Date(row.datetime).getHours() + new Date(row.datetime).getMinutes() / 60,
       }));
 
-      // Group commits by their commit ID
       commits = d3.groups(data, (d) => d.commit);
 
-      // Calculate stats
       stats.totalLOC = data.length;
       stats.totalCommits = commits.length;
       stats.totalFiles = d3.group(data, (d) => d.file).size;
@@ -77,22 +71,20 @@
       );
       stats.maxDayOfWeek = workByDayOfWeek.reduce((a, b) => a[1] > b[1] ? a : b, [])[0];
 
-      // Create scales for scatterplot
       xScale = d3.scaleTime()
         .domain(d3.extent(data, (d) => d.datetime))
         .range([usableArea.left, usableArea.right])
         .nice();
 
       yScale = d3.scaleLinear()
-        .domain([0, 24]) // From 0 to 24 hours of the day
-        .range([usableArea.bottom, usableArea.top]); // Flip the scale for top-to-bottom axis
-
+        .domain([0, 24])
+        .range([usableArea.bottom, usableArea.top]);
     } catch (error) {
       console.error('Error loading or processing data:', error);
     }
   });
 
-  // Update tooltip position based on mouse movement
+  // Track mouse movement for tooltip positioning
   onMount(() => {
     const svgElement = document.querySelector('svg');
 
@@ -108,46 +100,53 @@
     });
   });
 
-  // Update hover commit info
   $: hoveredCommit = commits[hoveredIndex] ? commits[hoveredIndex][1][0] : hoveredCommit;
 
-  // Render the axes and scatterplot
   $: {
     if (xScale && yScale) {
       d3.select(xAxis).call(d3.axisBottom(xScale));
       d3.select(yAxis).call(d3.axisLeft(yScale).tickFormat((d) => String(d % 24).padStart(2, '0') + ':00'));
-
-      // Render y-axis gridlines
       d3.select(yAxisGridlines)
         .call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
-
-      // Render x-axis gridlines
       d3.select(xAxisGridlines)
         .call(d3.axisBottom(xScale).tickFormat('').tickSize(-usableArea.height));
     }
-    
-    // After brush is created, raise the dots and everything after the overlay
-    if (svg) {
-      d3.select(svg).call(d3.brush());
 
-      // Raise the dots and everything that comes after the overlay
+    if (svg) {
+      d3.select(svg).call(d3.brush().on('start brush end', brushed));
       d3.select(svg).selectAll('.dots, .overlay ~ *').raise();
     }
   }
 
-  // Create brush and call it on the SVG element
+  // Brush function: Update selectedPoints and selectedCommits
   function brushed(event) {
-    if (!event.selection) return;
+    const selection = event.selection;
+    if (!selection) return;
 
-    // Get the brushed area in terms of x and y scales
-    const [[x0, y0], [x1, y1]] = event.selection;
-    
-    // Update the brushSelection with the current selection range
-    brushSelection = { x0, y0, x1, y1 };
+    const [x0, y0] = selection[0];
+    const [x1, y1] = selection[1];
 
-    // Optionally, you can do something with the selection, like filter the data or highlight selected points
-    // For now, we just log the brushed area
-    console.log('Brushed area:', brushSelection);
+    selectedPoints.clear();
+    selectedCommits = [];  // Reset the selected commits
+
+    commits.forEach((commit, index) => {
+      const cx = xScale(commit[1][0].datetime);
+      const cy = yScale(commit[1][0].hourFrac);
+
+      if (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1) {
+        selectedPoints.add(index);
+        selectedCommits.push(commit[1][0]); // Add the commit to the selectedCommits array
+      }
+    });
+
+    updateDots();
+  }
+
+  function updateDots() {
+    d3.select(svg)
+      .selectAll('.dots circle')
+      .data(commits)
+      .attr('fill', (d, index) => selectedPoints.has(index) ? 'orange' : 'steelblue');
   }
 </script>
 
@@ -209,13 +208,16 @@
           cx="{xScale(commit[1][0].datetime)}"
           cy="{yScale(commit[1][0].hourFrac)}"
           r="5"
-          fill="steelblue"
+          fill="{selectedPoints.has(index) ? 'orange' : 'steelblue'}"
           on:mouseenter={() => hoveredIndex = index}
           on:mouseleave={() => hoveredIndex = -1}
         />
       {/each}
     </g>
   </svg>
+
+  <!-- Count of selected commits -->
+  <p>{selectedCommits.length > 0 ? `${selectedCommits.length} commits selected` : "No commits selected"}</p>
 
   <!-- Tooltip Section -->
   {#if hoveredIndex !== -1}
@@ -309,6 +311,11 @@
     transform: scale(1.5);
   }
 
+  .dots circle.selected {
+    fill: orange;  /* Change color to orange for selected commits */
+    transform: scale(1.5); /* Optional: Scale up selected commits */
+  }
+
   .gridlines .x-gridlines line,
   .gridlines .y-gridlines line {
     stroke: #ddd;
@@ -343,17 +350,28 @@
   }
 
   @keyframes marching-ants {
-  to {
-    stroke-dashoffset: -8; /* 5 + 3 */
+    to {
+      stroke-dashoffset: -8; /* 5 + 3 */
+    }
   }
-}
 
-svg :global(.selection) {
-  fill-opacity: 10%;
-  stroke:white;
-  stroke-opacity: 70%;
-  stroke-dasharray: 5 3;
-  animation: marching-ants 2s linear infinite;
-}
+  svg :global(.selection) {
+    fill-opacity: 10%;
+    stroke: white;
+    stroke-opacity: 70%;
+    stroke-dasharray: 5 3;
+    animation: marching-ants 2s linear infinite;
+  }
+
+  .language-stats {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .language-stat {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
 </style>
-
