@@ -4,45 +4,45 @@
 </script>
 
 <article>
-    <svelte:element this={'h' + hLevel}>{data.title}</svelte:element>
-    <img src={data.image} alt={data.title} />
-    <p>{data.description}</p>
     <div class="project-year">{data.year}</div>
+    <svelte:element this={'h' + hLevel}>{data.title}</svelte:element>
+    <img src={data.image} alt={data.title} class="project-image" />
+    <p>{data.description}</p>
 </article>
 
-
 <style>
+    /* Body Styling */
     body {
         margin-inline: auto;
         padding: 25px;
         accent-color: var(--color-accent);
         background-color: var(--color-accent-light);
     }
-     .projects {
+
+    /* Projects Grid Layout */
+    .projects {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
     }
 
+    /* Article (Project Card) Styling */
     article {
         display: grid;
-        grid-template-rows: subgrid;
-        grid-row: span 3;
+        grid-template-rows: auto;
         background-color: #f9f9f9;
-        border:1px solid #ccc;
+        border: 1px solid #ccc;
         border-radius: 8px;
         padding: 1em;
         transition: box-shadow 0.2s ease-in-out;
     }
 
-    .project-year {
-        font-size: 0.8em;
-        color: whitesmoke;
-        margin-bottom: 10px;
-        font-family:Baskervville;
-        font-variant-numeric: oldstyle-nums;
+    /* Hover Effect for Article */
+    article:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    
+
+    /* Dark Mode Styling */
     @media (prefers-color-scheme: dark) {
         article {
             background-color: #333;
@@ -50,19 +50,38 @@
         }
 
         article:hover {
-            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
     }
 
-    article:hover {
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    /* Image Styling */
+    .project-image {
+        max-width: 100%; /* Responsive - scales within its container */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Rounded corners */
+        margin: 10px 0; /* Spacing around the image */
+        object-fit: cover; /* Ensure image fits neatly */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     }
+
+    /* Year Styling */
+    .project-year {
+        font-size: 0.8em;
+        color: #d5d2d2; /* Neutral text color */
+        margin-bottom: 10px;
+        font-family: Baskervville;
+        font-variant-numeric: oldstyle-nums;
+        text-align: left; /* Left-align the date */
+    }
+
+    /* Heading Styles */
     h1 {
         font-size: 4em;
         line-height: 1.1;
         text-wrap: balance;
         margin: 0.5em 0;
     }
+
     h2 {
         font-size: 2.5em;
         line-height: 1.1;
@@ -70,7 +89,7 @@
         margin: 0.5em 0;
     }
 
-    h1,h2,h3,h4,h5,h6 {
+    h1, h2, h3, h4, h5, h6 {
         line-height: 1.1;
         text-wrap: balance;
         margin-bottom: 0.5em;

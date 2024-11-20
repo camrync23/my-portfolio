@@ -63,7 +63,7 @@
 	{
 		"title": "Geospatial Visualization: Boston Bike Traffic",
 		"year": "2024",
-		"image": "https://github.com/camrync23/my-portfolio/blob/ca4121fa5bd5245e10caff93c801c100483ed5fb/static/image/boston_bike.png",
+		"image": "/image/boston_bike.png",
 		"description": "The project explores the use of geospatial data to visualize the patterns and trends of bike traffic in Boston, ultimately providing insights into traffic patterns and potential areas for improvement.", 
 		"link": "https://camrync23.github.io/wheelie-good-data/"
 	},
