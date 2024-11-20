@@ -2,13 +2,13 @@
 	{
 		"title": "DSC 209 Data Visualization Project 1",
 		"year": "2024",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/a1.jpeg",
 		"description": "In this project, an expository data visualization exploring the climate in major U.S. Cities was created. The project focuses on sound visualization techniques and choices"
 	},
 	{
 		"title": "DSC 209 Data Visualization Project 2",
 		"year": "2024",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/a2_earnest.png",
 		"description": "In this project, an earnest and deceptive data visualization was created using leading cause of death data provuded by the department of health and human services in hopes of exploring what makes visualizations deceptive and honest"
 	},
 	{
@@ -20,44 +20,44 @@
 	{
 		"title": "DSC 232 Group Project Exploring Demographic and Socioeconomic Influences on Education Attainment",
 		"year": "2024",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/Figure1.png",
 		"description": "In this project we explored the relationship between socioeconomic and demographic factors and education attainment in the US, specifically the relationship between gender, race, and income and education attainment"
 	},
 	{
 		"title": "DSC 267 Ethical Data Plan for Precision Medicine for Psychiatric Medication Advancement",
 		"year": "2024",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/pyschiatricmeds.jpeg",
 		"description": "In this project the plans for a traditional data science pipeline were outlined and designed with ethical implications in mind for the use of precision medicine in prescribing and creating psychiatric medications."
 	},
 	{
 		"title": "DSC 267 Ethical Data Plan for Flood Risk and Prevention",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/keralaflood.jpeg",
 		"year": "2024",
 		"description": "In this project, we wrote an ethical data plan for flood risk and prevention in Kerala, which was designed with the goal of implementing flood prevention and risk management strategies in the state. "
 	},
 	{
 		"title": "DSC 258 Review of Techniques for Mitigating Gender Bias in NLP",
 		"year": "2024",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/gender_bias.jpeg",
 		"description": "This project investigates advanced methods for mitigating gender bias in natural language processing (NLP) by analyzing the influence of verb choice on perceptions of agency and power, and introduces innovative techniques for rewriting sentences to enhance fairness in representation. "
 	},
 
 	{
 		"title": "DSC 207 Python Final Project" ,
 		"year": "2023",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/videogames.png",
 		"description": "In this data project, I conducted a comprehensive analysis of video game sales and review scores by exploring sentiment relationships, regional trends, and the effectiveness of various predictive models, ultimately uncovering insights into the influences of game features on global sales and reviews."
 	},
 	{
 		"title": "BellaBeat Data Analysis: A Google Capstone Project",
 		"year": "2023",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/bellabeat.png",
 		"description": "The Bella Beat capstone project involved analyzing health and wellness data to identify patterns and insights related to women's fitness and lifestyle, ultimately providing actionable recommendations for enhancing product offerings and user engagement."
 	},
 	{
 		"title": "Kenny's Strawberry Farm Climate and Business Analysis",
 		"year": "2023",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/strawberryfeild.jpeg",
 		"description": "The project involved analyzing sales, inventory, reservation, and weather data to assess the impact of weather on a u-pick strawberry business, ultimately developing predictions to optimize staffing and inventory needs based on reservations and forecasted weather conditions."
 	},
 	{
@@ -70,7 +70,7 @@
 	{
 		"title": " 'What Do You Want To Be When You Grow Up?' An Analysis of Higher Education and Modern Society",
 		"year": "2021",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
+		"image": "/image/capatilism.jpeg",
 		"description": "In this essay, I reflect on the challenges of making higher education unattainable and the resulting debt burden, exploring how society's emphasis on college degrees as a prerequisite for success devalues personal worth and perpetuates a capitalist agenda, all framed through my own experiences with these pressures."
 	}
 
