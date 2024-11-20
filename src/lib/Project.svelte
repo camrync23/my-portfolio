@@ -5,7 +5,9 @@
 
 <article>
     <div class="project-year">{data.year}</div>
-    <svelte:element this={'h' + hLevel}>{data.title}</svelte:element>
+    <svelte:element this={'h' + hLevel}>
+        <a href={data.link} target="_blank" rel="noopener noreferrer">{data.title}</a>
+    </svelte:element>
     <img src={data.image} alt={data.title} class="project-image" />
     <p>{data.description}</p>
 </article>
@@ -93,5 +95,15 @@
         line-height: 1.1;
         text-wrap: balance;
         margin-bottom: 0.5em;
+    }
+
+    /* Anchor Styling */
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover, a:focus {
+        text-decoration: underline;
     }
 </style>
